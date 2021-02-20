@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+
+        <ui:composition template="./../../WEB-INF/Templates/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form id="form">
+                    <h:panelGrid columns="1" style="width: 100%">
+                        <p:wizard id="wizard">
+                            <p:tab title="Información Personal" id="infoParacaidista">
+                                <p:panel header="Informacion Personal">
+                                    <p:messages/>
+                                    <h:panelGrid columns="2">
+                                        <p:outputLabel value="Nombres" for="personaNombres" />
+                                        <p:inputText id="personaNombres" value="#{usuarioController.persona.persona_nombres}" title="Nombres" />
+                                        <p:outputLabel value="Apellidos" for="personaApellidos" />
+                                        <p:inputText id="personaApellidos" value="#{usuarioController.persona.persona_apellidos}" title="Apellidos" />
+                                        <p:outputLabel value="Cedula" for="personaCedula" />
+                                        <p:inputText id="personaCedula" value="#{usuarioController.persona.persona_cedula}" title="Cedula" />
+
+                                        <p:outputLabel value="Edad" for="clienteEdad" />
+                                        <p:inputText id="clienteEdad" value="#{usuarioController.cliente.cliente_edad}" title="Edad" />
+                                        <p:outputLabel value="Correo" for="clienteCorreo" />
+                                        <p:inputText id="clienteCorreo" value="#{usuarioController.cliente.cliente_correo}" title="Correo" />
+                                        <p:outputLabel value="Telefono" for="clienteTelefono" />
+                                        <p:inputText id="clienteTelefono" value="#{usuarioController.cliente.cliente_telefono}" title="Telefono" />                  
+
+                                    </h:panelGrid> 
+
+                                </p:panel>
+                            </p:tab>
+
+
+                            <p:tab title="Información de usuario" id="infoUsuario">
+                                <p:panel header="Información de usuario">
+                                    <p:messages/>
+                                    <h:panelGrid columns="2">  
+
+                                        <p:outputLabel value="Usuario" for="usuarioNombre" />
+                                        <p:inputText id="usuarioNombre" value="#{usuarioController.usuario.usuario_nombre}" title="Usuario" />
+                                        <p:outputLabel value="Password" for="usuarioPassword" />
+                                        <p:inputText id="usuarioPassword" value="#{usuarioController.usuario.usuario_password}" title="Password" />                 
+
+                                        <p:commandButton icon="ui-icon-check" value="Registrar" actionListener="#{usuarioController.registrar()}"/>
+                                    </h:panelGrid> 
+                                </p:panel>
+                            </p:tab>   
+
+
+
+                        </p:wizard>
+
+
+
+
+                    </h:panelGrid>
+
+                </h:form>                
+            </ui:define>
+
+
+
+
+
+        </ui:composition>         
+
+    </h:body>
+</html>

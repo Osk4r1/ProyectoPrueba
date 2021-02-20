@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="./../../WEB-INF/Templates/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form id="form">
+                    <h:panelGrid columns="1" style="width: 100%">
+                        <p:wizard id="wizard">
+                            <p:tab title="Información de paracaidista" id="infoParacaidista">
+                                <p:panel header="Informacion de Paracaidista">
+                                    <p:messages/>
+                                    <h:panelGrid columns="2">
+
+                                        <p:outputLabel value="Tipo de Paracaidista" />
+                                        <p:selectOneRadio value="#{paracaidistaController.paracaidista.paracaidista_tipo}">
+                                            <f:selectItem itemValue="Civil" itemLabel="Civil" />
+                                            <f:selectItem itemValue="Militar" itemLabel="Militar" />
+                                        </p:selectOneRadio>
+
+                                        <p:outputLabel value="Escuela" for="escuelaParacaidista" />
+                                        <p:inputText id="escuelaParacaidista" value="#{paracaidistaController.paracaidista.paracaidista_escuela}" title="Escuela" />
+
+                                        <p:outputLabel value="Número de saltos" for="numSaltos" />
+                                        <p:inputText id="numSaltos" value="#{paracaidistaController.paracaidista.paracaidista_numsaltos}" title="numSaltos" />
+
+
+                                        <p:outputLabel value="Fecha del último salto" for="ultimoSalto" />
+                                        <p:calendar id="ultimoSalto"
+                                                    value="#{paracaidistaController.paracaidista.paracaidista_fechasalto}"
+                                                    showOn="button"
+                                                    navigator="true"/>
+
+                                        <p:outputLabel value="foto" for="fotoParacaidista" />
+                                        <p:inputText id="fotoParacaidista" value="#{paracaidistaController.paracaidista.paracaidista_foto}" title="Foto" /> 
+
+
+                                    </h:panelGrid> 
+
+                                </p:panel>
+                            </p:tab>
+
+
+                            <p:tab title="Curso de Cúpula" id="cupula">
+                                <p:panel header="Curso de Cúpula">
+                                    <p:messages/>
+                                    <h:panelGrid columns="2">
+
+                                        <p:outputLabel value="¿Usted realizo curso de cúpula?" />
+                                        <p:selectOneRadio value="#{paracaidistaController.cursoC}" >
+                                            <f:selectItem itemValue="true" itemLabel="Si" />
+                                            <f:selectItem itemValue="false" itemLabel="No" />
+
+                                        </p:selectOneRadio>
+
+                                        <p:outputLabel value="¿Dónde lo realizo?" for="lugarCupula" />
+                                        <p:inputText id="lugarCupula" value="#{paracaidistaController.cursoCupula.curso_lugar}" title="lugarCupula"/>
+
+                                    </h:panelGrid> 
+                                </p:panel>
+                            </p:tab>   
+
+                            <p:tab title="Curso de Agua" id="agua">
+                                <p:panel header="Curso de Agua">
+                                    <p:messages/>
+                                    <h:panelGrid columns="2">
+
+                                        <p:outputLabel value="¿Usted realizo curso de Agua?" />
+                                        <p:selectOneRadio value="#{paracaidistaController.cursoA}" >
+                                            <f:selectItem itemValue="true" itemLabel="Si" />
+                                            <f:selectItem itemValue="false" itemLabel="No" />
+
+                                        </p:selectOneRadio>
+
+                                        <p:outputLabel value="¿Dónde lo realizo?" for="lugarAgua" />
+                                        <p:inputText id="lugarAgua" value="#{paracaidistaController.cursoAgua.curso_lugar}" title="lugarAgua"/>
+
+                                    </h:panelGrid> 
+                                </p:panel>
+                            </p:tab>                              
+
+
+                            <p:tab title="Licencia" id="licencia">
+                                <p:panel header="Licencia">
+                                    <p:messages/>
+                                    <h:panelGrid columns="2">
+
+                                        <p:outputLabel value="¿Qué tipo de licencia posee?" />
+                                        <p:selectOneRadio value="#{paracaidistaController.licencia.licencia_tipo}">
+                                            <f:selectItem itemValue="A" itemLabel="A" />
+                                            <f:selectItem itemValue="B" itemLabel="B" />
+                                            <f:selectItem itemValue="C" itemLabel="C" />
+                                            <f:selectItem itemValue="D" itemLabel="D" />                                            
+                                        </p:selectOneRadio>
+
+                                        <p:outputLabel value="¿Cuándo caduca su licencia?" for="licenciaCaducidad" />
+                                        <p:calendar id="licenciaCaducidad"
+                                                    value="#{paracaidistaController.licencia.licencia_caducidad}"
+                                                    showOn="button"
+                                                    navigator="true"/>
+
+                                        <p:commandButton icon="ui-icon-check" value="Registrar" actionListener="#{paracaidistaController.registrar()}"/>
+                                    </h:panelGrid> 
+                                </p:panel>
+                            </p:tab> 
+
+
+
+
+                        </p:wizard>
+
+
+
+
+                    </h:panelGrid>
+
+                </h:form>                
+            </ui:define>
+
+
+
+
+
+        </ui:composition> 
+
+
+    </h:body>
+</html>

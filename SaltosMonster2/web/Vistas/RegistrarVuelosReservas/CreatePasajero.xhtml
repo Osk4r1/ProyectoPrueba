@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="./../../WEB-INF/Templates/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h3> Agregar pasajero </h3>
+
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Número de vuelo:" for="numVuelo"/>
+                    <p:outputLabel value="#{vuelosaltoController.vueloSelec.salto_id}" id="numVuelo"/>
+
+                    <p:outputLabel value="Fecha de vuelo:" for="fechaVuelo"/>
+                    <h:outputText value="#{vuelosaltoController.vueloSelec.horario_fecha}" id="fechaVuelo">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+
+                    <p:outputLabel value="Hora de vuelo:" for="horaVuelo"/>
+                    <p:outputLabel value="#{vuelosaltoController.vueloSelec.horario_hora}" id="horaVuelo"/>
+
+                </h:panelGrid>
+                <br/>
+                <br/>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Tipo de vuelo:" for="tipoVuelo"/>
+                        <h:panelGroup style="display:block; text-align:left">
+
+                            <p:selectOneMenu id="tipoVuelo" value="#{vuelosaltoController.tipoSalto}" style="width:125px">
+                                <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                <f:selectItem itemLabel="Tándem" itemValue="tandem" />
+                                <f:selectItem itemLabel="Libre" itemValue="libre" />
+                                <f:facet name="footer">
+                                    <p:separator />
+                                    <h:outputText value="3 consoles" style="font-weight:bold;"/>
+                                </f:facet>
+                            </p:selectOneMenu>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Tipo de pasajero:" for="tipoPasajero"/>
+                        <h:panelGroup style="display:block; text-align:left">
+
+                            <p:selectOneMenu id="tipoPasajero" value="#{vuelosaltoController.tipoPasajero}" style="width:125px">
+                                <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                <f:selectItem itemLabel="Cliente" itemValue="cliente" />
+                                <f:selectItem itemLabel="Instructor" itemValue="instructor" />
+                                <f:selectItem itemLabel="Camarógrafo" itemValue="camarografo" />
+                                <f:facet name="footer">
+                                    <p:separator />
+                                    <h:outputText value="3 consoles" style="font-weight:bold;"/>
+                                </f:facet>
+                            </p:selectOneMenu>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="Nombre del pasajero:" for="cliente"/>
+                        <h:panelGroup style="display:block; text-align:left">
+                            <h:selectOneMenu id="cliente" value="#{vuelosaltoController.nombreCliente}">
+                                <f:selectItems value="#{vuelosaltoController.personas}"/>
+                            </h:selectOneMenu> 
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="Camarógrafo:" for="camara"/>
+                        <h:panelGroup style="display:block; text-align:left">
+                            <p:selectOneMenu id="camara" value="#{vuelosaltoController.camara}" style="width:125px">
+                                <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                <f:selectItem itemLabel="Si" itemValue="Si" />
+                                <f:selectItem itemLabel="No" itemValue="No" />
+                            </p:selectOneMenu>
+                        </h:panelGroup>
+
+                        <p:commandButton icon="ui-icon-check" value="Registrar" actionListener="#{vuelosaltoController.registrarPasajero()}" action="/Vistas/RegistrarVuelosReservas/ReadVueloSalto?faces-redirect=true"/>
+                    </h:panelGrid>
+
+
+
+
+
+
+
+
+
+                </h:form>
+
+
+            </ui:define>
+
+
+
+
+
+        </ui:composition> 
+
+
+    </h:body>
+</html>

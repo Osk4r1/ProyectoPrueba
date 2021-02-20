@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../../WEB-INF/Templates/plantilla.xhtml">
+            <ui:define name="content">
+                <h3> Perfil por usuarios registrados en el sistema </h3>
+                <p:commandButton value="Nuevo Rol" action="/Vistas/GestionarRoles/Create?faces-redirect=true"/>
+                <h:form id="Perfiles">
+                    Perfil de Usuario : 
+                    <h:panelGroup style="display:block; text-align:left">
+                        <h:selectOneMenu id="tipo" value="#{rolesController.rolid}">
+                            <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                            <f:selectItems value="#{rolesController.roles}"/>
+                            <p:ajax  event="valueChange"  update="usuarios, mismoPerfil"/>
+                        </h:selectOneMenu> 
+                    </h:panelGroup>
+                    <h:panelGrid columns="3" width="700">
+                        <h:panelGroup >
+                            <h3> Usuarios Disponibles </h3>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h3>  </h3>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h3> Usuarios Con Perfil Seleccionado </h3>
+                        </h:panelGroup>
+                        <h:panelGroup style="text-align:center">
+                            <h:panelGrid columns="1" columnClasses="alignmenLeft" width="100">
+                                <h:selectOneListbox id="usuarios" value="#{rolesController.userNoValid}"
+                                                    style="width: 200px !important; height: 300px !important">
+                                    <f:selectItems value="#{rolesController.leerUsuarioNo()}" var="usuEmailItem"/>
+                                </h:selectOneListbox>
+                            </h:panelGrid>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h:panelGrid columns="1" columnClasses="alignmentCenter" width="50">  
+                                <h:commandButton value="Agregar ►" action="#{rolesController.actualizar()}" style="width:100px"/>      
+                                <h:commandButton value="◄ Regresar " action="#{rolesController.regresar()}" style="width:100px"/>                                  
+                            </h:panelGrid>
+                        </h:panelGroup>
+                        <h:panelGroup style="text-align:center">
+                            <h:panelGrid columns="1" columnClasses="alignmentRight" width="200">
+                                <h:selectOneListbox id="mismoPerfil" value="#{rolesController.userValid}" style="width: 200px !important; height: 300px !important">
+                                    <f:selectItems value="#{rolesController.leerUsuario()}" var="usuEmailItem"/>
+                                </h:selectOneListbox>
+                            </h:panelGrid>
+                        </h:panelGroup>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition> 
+    </h:body>
+</html>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../../WEB-INF/Templates/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form id="form">
+                    <p:messages id="mensaje" autoUpdate="true"/>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Nombres" for="personaNombres" />
+                        <p:inputText id="personaNombres" value="#{clienteController.persona.persona_nombres}" title="Nombres" />
+                        <p:outputLabel value="Apellidos" for="personaApellidos" />
+                        <p:inputText id="personaApellidos" value="#{clienteController.persona.persona_apellidos}" title="Apellidos" />
+                        <p:outputLabel value="Cédula" for="personaCedula" />
+                        <p:inputText id="personaCedula" value="#{clienteController.cedula}" title="Cedula" />
+                        <p:outputLabel value="Foto"/>
+                        <p:fileUpload/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="1" style="width: 100%">
+                        <p:wizard id="wizard">
+                            <p:tab title="Información Personal" id="infoPersonal">
+                                <p:panel header="Información Personal">
+                                    <p:messages/>
+                                    <h:panelGrid columns="2">  
+                                        <p:outputLabel value="Género" />
+                                        <p:selectOneRadio>
+                                            <f:selectItem itemValue="Femenino" itemLabel="Femenino" />
+                                            <f:selectItem itemValue="Masculino" itemLabel="Masculino" />
+                                        </p:selectOneRadio>
+                                        <p:outputLabel value="Edad" for="clienteEdad" />
+                                        <p:inputText id="clienteEdad" value="#{clienteController.cliente.cliente_edad}" title="Edad" />
+                                        <p:outputLabel value="Fecha de nacimiento" for="fNacimiento" />
+                                        <p:calendar id="fNacimiento"
+                                                    showOn="button"
+                                                    navigator="true"/>
+                                        <p:outputLabel value="Teléfono" for="clienteTelefono" />
+                                        <p:inputText id="clienteTelefono" value="#{clienteController.cliente.cliente_telefono}" title="Telefono" />            
+                                    </h:panelGrid> 
+                                </p:panel>
+                            </p:tab>   
+                            <p:tab title="Cuenta de usuario" id="infoCuenta">
+                                <p:panel header="Cuenta de usuario">
+                                    <p:messages/>
+                                    <h:panelGrid columns="2">
+                                        <p:outputLabel value="Correo" for="clienteCorreo" />
+                                        <p:inputText id="clienteCorreo" value="#{clienteController.cliente.cliente_correo}" title="Correo" />
+                                        <p:commandButton icon="ui-icon-check" value="Registrar" action="#{clienteController.registrar()}" />
+                                    </h:panelGrid> 
+                                </p:panel>
+                            </p:tab>
+                        </p:wizard>
+                    </h:panelGrid>
+                </h:form>                
+            </ui:define>
+        </ui:composition>     
+
+    </h:body>
+</html>

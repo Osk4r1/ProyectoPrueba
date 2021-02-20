@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="./../../WEB-INF/Templates/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h3> Clientes registrados en Saltos Tándem </h3>
+                <h:form>
+                    <p:messages id="mensaje" autoUpdate="true"/>
+
+                    <p:dataTable value="#{vuelosaltoController.vuelosTandem}"  var="reserva" id="reservaT">
+
+                        <p:column headerText="Número de vuelo">
+                            <h:outputText value="#{reserva.numVuelo}" />
+                        </p:column>
+
+                        <p:column headerText="Fecha">
+                            <h:outputText value="#{reserva.horarioVuelo}" >
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Pasajero">
+                            <h:outputText value="#{reserva.pasajero}">
+                            </h:outputText>
+
+                        </p:column>       
+
+                        <p:column headerText="Valor">
+                            <h:outputText value="#{reserva.valor}">
+                            </h:outputText>
+                        </p:column>    
+
+                        <p:column headerText="Equipo">
+                            <h:outputText value="#{reserva.equipo}">
+                            </h:outputText>
+                        </p:column>    
+
+                        <p:column headerText="Camarógrafo">
+                            <h:outputText value="#{reserva.camarografo}">
+                            </h:outputText>
+                        </p:column>    
+
+                        <p:column headerText="Valor por Cliente">
+                            <h:outputText value="#{reserva.totalcliente}">
+                            </h:outputText>
+                        </p:column>   
+
+                    </p:dataTable>
+
+                    <br/>
+                    <br/>
+
+                    <br/>
+                    <br/>
+
+                    <h:commandLink>
+                        <h:graphicImage url="/Vistas/iconos/pdf.png" width="48"/>
+                        <p:dataExporter type="pdf" target="reservaT" fileName="ReservaPDF"/>
+                    </h:commandLink>
+
+
+                    <h:commandLink>
+                        <h:graphicImage url="/Vistas/iconos/excel.png" width="48"/>
+                        <p:dataExporter type="xls" target="reservaT" fileName="ReservaExcel"/>
+                    </h:commandLink>          
+
+
+                    <h:commandLink>
+                        <h:graphicImage url="/Vistas/iconos/impr.png" width="48"/>
+                        <p:printer target="reservaT"/>
+                    </h:commandLink>   
+                </h:form>
+
+
+
+            </ui:define>
+
+
+
+
+
+        </ui:composition> 
+
+
+    </h:body>
+</html>

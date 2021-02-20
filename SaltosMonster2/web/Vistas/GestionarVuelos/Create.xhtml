@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="./../../WEB-INF/Templates/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form id="form">
+                    <h:panelGrid columns="2" style="width: 100%">
+                        <p:outputLabel value="Seleccione la fecha del nuevo vuelo" for="fechaVuelo" />
+                        <p:calendar id="fechaVuelo"
+                                    value="#{vueloController.horario.horario_fecha}"
+                                    showOn="button"
+                                    navigator="true"/>
+
+                        <p:outputLabel value="Ingrese la hora del vuelo" for="horaVuelo" />
+                        <p:inputText id="horaVuelo" value="#{vueloController.horario.horario_hora}" title="horaVuelo" />                        
+
+
+                        <p:commandButton icon="ui-icon-check" value="Registrar" actionListener="#{vueloController.registrar()}" action="/Vistas/GestionarVuelos/ReadHorario?faces-redirect=true"/>
+                    </h:panelGrid>
+
+                </h:form>                
+            </ui:define>
+
+
+
+
+
+        </ui:composition> 
+
+
+    </h:body>
+</html>

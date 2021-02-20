@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body style="background-image: url('https://adictravel.com/wp-content/uploads/2018/02/paracaidismo-2018-adictravel.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;">
+
+        <center>
+            <div style="width: 600px; margin: 100px;">
+                <p:separator/>
+
+                <h:form>
+                    <p:messages autoUpdate="true" showDetail="true" />
+
+                    <h:panelGrid>
+                        <p:outputLabel style="color: white;" for="txtUsuario" value="Usuario" />
+                        <p:inputText  id="txtUsuario" value="#{indexController.usuario.usuario_nombre}" required="true" autocomplete="off"/>
+                        <p:outputLabel style="color: white;" for="txtClave" value="Clave" />
+                        <p:password id="txtClave" value="#{indexController.usuario.usuario_password}" required="true" autocomplete="off"/>
+                        <br/>
+                        <p:commandButton style="width:224px;" icon="ui-icon-key" value="Iniciar Sesión" action="#{indexController.iniciarSesion()}"/>
+                    </h:panelGrid>
+
+                    <p:separator/>
+
+                    
+
+                    <p:separator/>
+                </h:form>
+            </div>
+        </center>
+
+    </h:body>
+</html>
